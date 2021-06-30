@@ -41,5 +41,6 @@ class Login:
                 self.password_entry.delete(0,END)
 
 x = Login(root)
+root.destroy()
 root.mainloop()
 

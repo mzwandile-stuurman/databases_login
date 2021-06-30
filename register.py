@@ -22,8 +22,10 @@ class Register:
         self.reg_btn.place(x= 50, y=250)
 
     def reg(self):
-        if self.pass_reg_entry.get() == " " or self.user_reg_entry.get() == " ":
+        if self.pass_reg_entry.get() == "" or self.user_reg_entry.get() == "":
             messagebox.showwarning(title='Invalid', message='Please enter valid details.')
+        elif self.pass_reg_entry.get() == " " or self.user_reg_entry.get() == " ":
+            messagebox.showwarning(title="Space", message="Please enter valid details.")
 
         else:
 
@@ -38,7 +40,7 @@ class Register:
             mydb.commit()
             messagebox.showinfo(title="Valid", message='Registered succesfuly')
             import databases
-        root.destroy()
+            root.destroy()
 
 x = Register(root)
 root.mainloop()
