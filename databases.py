@@ -26,9 +26,9 @@ class Login:
 
 
     def password(self):
-        mydb = mysql.connector.connect(user='lifechoices', password = '@Lifechoices1234', host = '127.0.0.1', database = 'Hospitals', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
-        xy = mycursor.execute('Select * from Login')
+        xy = mycursor.execute('Select * from registry')
 
         for i in mycursor:
 
