@@ -21,6 +21,7 @@ class Register:
         self.reg_btn = Button(master, text = "Register", command = self.reg)
         self.reg_btn.place(x= 50, y=250)
 
+
     def reg(self):
         if self.pass_reg_entry.get() == "" or self.user_reg_entry.get() == "":
             messagebox.showwarning(title='Invalid', message='Please enter valid details.')
@@ -29,17 +30,17 @@ class Register:
 
         else:
 
-            mydb = mysql.connector.connect(host="sql4.freesqldatabase.com", user="siSVLIJkL8", password="sql4423111", database="sql4423111", auth_plugin = 'mysql_native_password')
+            mydb = mysql.connector.connect(host="sql4.freesqldatabase.com", user="sql4423111", password="siSVLIJkL8", database="sql4423111", auth_plugin = 'mysql_native_password')
 
             mycursor = mydb.cursor()
 
-            sql = "INSERT INTO next_of_keen (name, phone_number) VALUES (%s, %s)"
+            sql = "INSERT INTO next_of_keen (name, phone_number) VALUES ( %s, %s)"
             val = (self.user_reg_entry.get(), self.pass_reg_entry.get())
             mycursor.execute(sql, val)
 
             mydb.commit()
-            messagebox.showinfo(title="Success", message='Registered succesfuly')
-            import databases
+            messagebox.showinfo(title="Success", message='Registered succesfuly-Login.')
+            import main_page
             root.destroy()
 
 x = Register(root)
