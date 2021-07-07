@@ -31,7 +31,7 @@ class Login:
         self.login_btn = Button(master, text = "Login", command = self.password)
         self.login_btn.place(x=50, y=200)
 
-        self.reg_btn = Button(master, text = 'Register')
+        self.reg_btn = Button(master, text = 'Register', command = self.reg)
         self.reg_btn.place(x= 150, y=200)
 
 
@@ -53,16 +53,23 @@ class Login:
 
                 mycursor = mydb.cursor()
 
-                sql = "INSERT INTO logins (name, surname, password,date) VALUES (%s, %s, %s,%s)"
+                sql = "INSERT INTO logins (name, surname, password,login) VALUES (%s, %s, %s,%s)"
                 val = (self.name_entry.get(), self.surname_entry.get(), self.password_entry.get(),self.formatted_date)
                 mycursor.execute(sql, val)
                 mydb.commit()
+                import logout_page
+                root.withdraw()
 
-            elif i[3] != self.password_entry.get():
+        if i[3] != self.password_entry.get():
 
-                messagebox.showwarning(title="Incorrect", message="Login Denied")
-                self.name_entry.delete(0,END)
-                self.password_entry.delete(0,END)
+            messagebox.showwarning(title="Incorrect", message="Login Denied - Register")
+            self.name_entry.delete(0,END)
+            self.password_entry.delete(0,END)
+            self.surname_entry.delete(0,END)
+
+    def reg(self):
+        import register
+        root.destroy()
 
 x = Login(root)
 

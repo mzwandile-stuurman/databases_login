@@ -34,7 +34,7 @@ class Register:
 
 
     def reg(self):
-        if self.name_reg_entry.get() == "" or self.surname_reg_entry.get() == "" or self.password_entry.get() =="" or self.cell_number_entry.get() == "":
+        if self.name_reg_entry.get() == None or self.surname_reg_entry.get() == None or self.password_entry.get() == None or self.cell_number_entry.get() == None:
             messagebox.showwarning(title='Invalid', message='Please enter valid details.')
         elif self.name_reg_entry.get() == " " or self.surname_reg_entry.get() == " " or self.password_entry == " " or self.cell_number_entry == " ":
             messagebox.showwarning(title="Space", message="Please enter valid details.")
@@ -52,6 +52,8 @@ class Register:
 
             mydb.commit()
             messagebox.showinfo(title="Valid", message='Please enter next of keen.')
+            import keen_details
+
 
             root.destroy()
 
