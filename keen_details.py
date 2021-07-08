@@ -33,7 +33,7 @@ def reg():
 
         mycursor = mydb.cursor()
 
-        sql = "INSERT INTO next_of_keen (name, phone_number) VALUES ( %s, %s)"
+        sql = "INSERT INTO next_of_keen (keen_name, keen_number) VALUES ( %s, %s)"
         val = (user_reg_entry.get(), pass_reg_entry.get())
         mycursor.execute(sql, val)
 

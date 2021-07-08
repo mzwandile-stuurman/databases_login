@@ -38,8 +38,97 @@ for dt in mycursor:
                values =(dt[0],dt[1],dt[2],dt[3],dt[4]))
 
 def delete():
+
     selected = trv.focus()
     values = trv.item(selected,'values')
+    mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+    mycursor = mydb.cursor()
+    sql = "DELETE FROM register WHERE id = %s"
+    val = (values[0],)
+    mycursor.execute(sql,val)
+    mydb.commit()
+    messagebox.showinfo(title='Deleted', message='Record deleted.')
+
+
+def update():
+    update_label = Label(root, text ='Field to update:')
+    update_label.place(x=40, y=350)
+    update_entry = Entry(root)
+    update_entry.place(x=100, y=350)
+    what_label = Label(root, text = 'Update: ')
+    what_label.place(x=40,y=450)
+    what_entry = Entry(root)
+    what_entry.place(x=100,y=450)
+    into_label = Label(root, text= 'update to:')
+    into_label.place(x=40, y=550)
+    into_entry = Entry(root)
+    into_entry.place(x=40,y=550)
+
+    if update_entry.get() == 'name':
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "UPDATE register SET name = %s WHERE name = %s"
+        val = (into_entry.get(),what_entry.get())
+        mycursor.execute(sql,val)
+        mydb.commit()
+    elif update_entry.get() == 'surname':
+
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "UPDATE register SET surname = %s WHERE surname = %s"
+        val = (into_entry.get(),what_entry.get())
+        mycursor.execute(sql,val)
+        mydb.commit()
+
+    elif update_entry.get() == 'password':
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "UPDATE register SET password = %s WHERE password = %s"
+        val = (into_entry.get(),what_entry.get())
+        mycursor.execute(sql,val)
+        mydb.commit()
+
+    elif update_entry.get() == 'phone_number':
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "UPDATE register SET phone_number = %s WHERE phone_number= %s"
+        val = (into_entry.get(),what_entry.get())
+        mycursor.execute(sql,val)
+        mydb.commit()
+
+    elif update_entry.get() == 'keen_name':
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "UPDATE next_of_keen SET keen_name = %s WHERE keen_name = %s"
+        val = (into_entry.get(),what_entry.get())
+        mycursor.execute(sql,val)
+        mydb.commit()
+
+    elif update_entry.get() == 'keen_number':
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "UPDATE next_of_keen SET keen_number = %s WHERE keen_number = %s"
+        val = (into_entry.get(),what_entry.get())
+        mycursor.execute(sql,val)
+        mydb.commit()
+
+    else:
+        messagebox.showwarning(title='NUll', message='Please enter correct record')
+
+
+
+
+
+def add_record():
+    root.destroy()
+    import register
+
+delete_btn = Button(root, text = 'Delete selected row', command = delete)
+delete_btn.place(x=20,y=300)
+
+update_btn = Button(root, text = 'Update a record', command = update)
+update_btn.place(x=20,y=300)
+
 
 
 
