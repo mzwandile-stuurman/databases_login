@@ -77,7 +77,8 @@ login_btn.place(x=50, y=200)
 reg_btn = Button(root, text = 'Register', command =reg)
 reg_btn.place(x= 150, y=200)
 
-admin_btn = Button(root, text = 'Admin-Login', command =admin)
+admin_btn = Button(root, text = 'Login as Admin', command =admin)
+admin_btn.place(x=300,y=200)
 
 
 

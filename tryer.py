@@ -17,11 +17,15 @@ mycursor = mydb.cursor()
 #mycursor.execute(sql, val)
 #mydb.commit()
 
+#mycursor.execute('SELECT register.ID, register.name, register.surname, register.password, register.phone_number,next_of_keen.ID, next_of_keen.keen_name, next_of_keen.keen_number FROM register JOIN next_of_keen ON register.ID = next_of_keen.ID')
+#print("ID    Name    Surname    password    phone_number    keen_name    keen_number")
+#for row in mycursor:
+        #print("%d    %s    %d    %d    %s    %s    %s"%(row[0], row[1],row[2],row[3],row[4],row[5],row[6]))
 
-mycursor.execute('SHOW TABLES')
+#mycursor.execute('SHOW TABLES')
 #mycursor.execute('DROP TABLE register')
 
-#mycursor.execute('SELECT * FROM register')
+mycursor.execute('SELECT * FROM register')
 
 for x in mycursor:
     print(x)
