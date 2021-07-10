@@ -22,15 +22,16 @@ pass_reg_entry.place(x = 220 , y = 150)
 
 
 def reg():
-    if pass_reg_entry.get() == None or user_reg_entry.get() == None:
+    if pass_reg_entry.get() == "" or user_reg_entry.get() == "":
         messagebox.showwarning(title='Invalid', message='Please enter valid details.')
     elif pass_reg_entry.get() == " " or user_reg_entry.get() == " ":
         messagebox.showwarning(title="Space", message="Please enter valid details.")
+    elif len(pass_reg_entry.get())>10:
+        messagebox.showinfo(title="Wrong Number", message="Please enter correct number")
 
     else:
 
-        mydb = mysql.connector.connect(host="sql4.freesqldatabase.com", user="sql4423111", password="siSVLIJkL8", database="sql4423111", auth_plugin = 'mysql_native_password')
-
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
 
         sql = "INSERT INTO next_of_keen (keen_name, keen_number) VALUES ( %s, %s)"

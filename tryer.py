@@ -1,6 +1,6 @@
 import mysql.connector
 
-mydb = mysql.connector.connect(host='sql4.freesqldatabase.com', password = 'siSVLIJkL8', user = 'sql4423111', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
 mycursor = mydb.cursor()
 
 #mycursor.execute('ALTER TABLE next_of_keen ADD FOREIGN KEY (ID_number) references registry(ID_number')
@@ -13,7 +13,7 @@ mycursor = mydb.cursor()
 
 #mycursor.execute('CREATE TABLE admin_reg (ID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(ID), CONSTRAINT pw_logins UNIQUE(password))')
 #sql = "INSERT INTO admin_reg (name, surname, password) VALUES (%s, %s, %s)"
-#val = ("Thapelo", "Tsotetsi", "admin2")
+#val = ("Thapelo", "Tsotesti", "admin2")
 #mycursor.execute(sql, val)
 #mydb.commit()
 
@@ -25,11 +25,10 @@ mycursor = mydb.cursor()
 #mycursor.execute('SHOW TABLES')
 #mycursor.execute('DROP TABLE register')
 
-mycursor.execute('SELECT COUNT(DISTINCT login) FROM logins')
+#mycursor.execute('SELECT * FROM logins')
 
-
-for x in mycursor:
-    print(x[0])
+#for x in mycursor:
+    #print(x)
 
 #for x in mycursor:
     #print(x)

@@ -36,11 +36,16 @@ def reg():
         messagebox.showwarning(title='Invalid', message='Please enter valid details.')
     elif name_reg_entry.get() == " " or surname_reg_entry.get() == " " or password_entry == " " or cell_number_entry == " ":
         messagebox.showwarning(title="Space", message="Please enter valid details.")
+    elif len(cell_number_entry.get())>10:
+        messagebox.showinfo(title='Incorrect number', message='Please enter a correct number!')
+        name_reg_entry.delete(0,END)
+        surname_reg_entry.delete(0,END)
+        password_entry.delete(0,END)
+        cell_number_entry.get(0,END)
 
     else:
 
-        mydb = mysql.connector.connect(host="sql4.freesqldatabase.com", user="sql4423111", password="siSVLIJkL8", database="sql4423111", auth_plugin = 'mysql_native_password')
-
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
 
         sql = "INSERT INTO register (name, surname, password, phone_number) VALUES (%s, %s, %s, %s)"

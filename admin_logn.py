@@ -29,7 +29,7 @@ password_entry.place(x=200, y=150)
 
 def password():
 
-    mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+    mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
     mycursor = mydb.cursor()
     xy = mycursor.execute('Select * from admin_reg')
 
