@@ -3,7 +3,7 @@ from tkinter import messagebox
 import mysql.connector
 
 root = Tk()
-root.geometry("300x300")
+root.geometry("600x600")
 root.config(bg = "dark slate grey")
 
 
@@ -11,12 +11,12 @@ root.config(bg = "dark slate grey")
 user_reg_label = Label(root, text = 'Enter next of kin name:')
 user_reg_label.place(x= 20, y= 50)
 user_reg_entry = Entry(root)
-user_reg_entry.place(x = 100, y = 50)
+user_reg_entry.place(x = 200, y = 50)
 
 pass_reg_label = Label(root, text = 'Enter next of kin cell number:')
 pass_reg_label.place(x = 20 , y = 150)
 pass_reg_entry = Entry(root)
-pass_reg_entry.place(x = 100 , y = 150)
+pass_reg_entry.place(x = 220 , y = 150)
 
 
 

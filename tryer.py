@@ -25,10 +25,11 @@ mycursor = mydb.cursor()
 #mycursor.execute('SHOW TABLES')
 #mycursor.execute('DROP TABLE register')
 
-mycursor.execute('SELECT * FROM register')
+mycursor.execute('SELECT COUNT(DISTINCT login) FROM logins')
+
 
 for x in mycursor:
-    print(x)
+    print(x[0])
 
 #for x in mycursor:
     #print(x)

@@ -9,8 +9,6 @@ root.geometry("600x600")
 root.config(bg = 'dark slate grey')
 
 
-
-
 name_label = Label(root, text = "Enter your name:")
 name_label.place(x=20,y=50)
 name_entry = Entry(root)

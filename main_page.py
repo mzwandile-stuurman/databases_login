@@ -1,3 +1,6 @@
+# Mzwandile Stuurman
+
+# Importing Modules
 from tkinter import *
 from tkinter import messagebox
 import mysql.connector
@@ -9,6 +12,7 @@ root.title("Login Page")
 root.geometry("600x600")
 root.config(bg = 'dark slate grey')
 
+# Creating Entries and labels
 now = datetime.now()
 formatted_date =now.strftime('%Y-%m-%d %H:%M:%S')
 name_label = Label(root, text = "Enter your name:")
@@ -26,6 +30,8 @@ password_label.place(x=20, y=150)
 password_entry = Entry(root)
 password_entry.place(x=200, y=150)
 
+
+# This function insert user to Logins table if password is correct
 def password():
 
     mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
@@ -49,7 +55,7 @@ def password():
         val = (name_entry.get(),surname_entry.get(),password_entry.get(),formatted_date)
         mycursor.execute(sql, val)
         mydb.commit()
-        root.destroy()
+        root.withdraw()
         import logout_page
 
     else:
@@ -59,12 +65,13 @@ def password():
         password_entry.delete(0,END)
         surname_entry.delete(0,END)
 
+# This function takes user to admin screen
 def admin():
 
     root.destroy()
     import admin_logn
 
-
+# This functions takes user to the register screen
 def reg():
     root.destroy()
     import register

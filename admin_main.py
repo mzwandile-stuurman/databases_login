@@ -23,8 +23,8 @@ trv2.column("1", width = 30, anchor ='c')
 trv2.column("2", width = 100, anchor ='c')
 trv2.column("3", width = 100, anchor ='c')
 trv2.column("4", width = 100, anchor ='c')
-trv2.column("5", width = 120, anchor ='c')
-trv2.column("6",width =150, anchor = 'c')
+trv2.column("5", width = 180, anchor ='c')
+trv2.column("6",width =180, anchor = 'c')
 
 
 
@@ -40,8 +40,7 @@ xy = mycursor.execute('SELECT * FROM logins')
 
 
 for dt in mycursor:
-    trv2.insert("", 'end',iid=dt[0], text=dt[0],
-               values =(dt[0],dt[1],dt[2],dt[3],dt[4],dt[5]))
+    trv2.insert("", 'end',iid=dt[0], text=dt[0],values =(dt[0],dt[1],dt[2],dt[3],dt[4],dt[5]))
 
 
 # Logins tree view
@@ -72,37 +71,83 @@ mycursor = mydb.cursor()
 xy = mycursor.execute('SELECT register.ID, register.name, register.surname, register.password, register.phone_number, next_of_keen.keen_name, next_of_keen.keen_number FROM register JOIN next_of_keen ON register.ID = next_of_keen.ID')
 
 for dt in mycursor:
-    trv.insert("", 'end',iid=dt[0], text=dt[0],
-               values =(dt[0],dt[1],dt[2],dt[3],dt[4],dt[5],dt[6]))
+    trv.insert("", 'end',iid=dt[0], text=dt[0],values =(dt[0],dt[1],dt[2],dt[3],dt[4],dt[5],dt[6]))
+
+
+scrollbar = ttk.Scrollbar(root, orient = 'vertical', command =trv.yview())
+scrollbar.grid(row=1,column=2)
+trv.configure(yscrollcommand = scrollbar.set)
+
+var = StringVar()
+var2 = StringVar()
+
+registry =Label(root, text='Registered users', bg ='white')
+registry.place(x=10,y=10)
+
+login_history = Label(root, text = 'Login History', bg = 'white')
+login_history.place(x=100,y=275)
+
+update_frame = Frame(root, width = 300, height = 200)
+update_frame.place(x=740,y=300)
+update_label = Label(root, text ='Field to update:')
+update_label.place(x=750, y=350)
+update_entry = Entry(root)
+update_entry.place(x=860, y=350)
+what_label = Label(root, text = 'Update what: ')
+what_label.place(x=750,y=400)
+what_entry = Entry(root)
+what_entry.place(x=860,y=400)
+into_label = Label(root, text= 'update to:')
+into_label.place(x=750, y=450)
+into_entry = Entry(root)
+into_entry.place(x=860,y=450)
+
+update_headig = Label(root,text='Update a field', bg = 'white', width= 25)
+update_headig.place(x=780,y=315)
+people_loged_in = Label(root, text = 'logged in:')
+people_loged_in.place(x=890,y=10)
+number = Label(root, text = '',textvariable = var, bg='white', width = 3)
+number.place(x=960,y=10)
+
+mycursor.execute('SELECT COUNT(DISTINCT login) FROM logins')
+for i in mycursor:
+        var.set(i[0])
+
+people_logged_out = Label(root, text='Logged out:')
+people_logged_out.place(x=1000,y=10)
+number_out = Label(root, text='', textvariable = var2, bg='white', width=3)
+number_out.place(x=1090,y=10)
+mycursor.execute('SELECT COUNT(DISTINCT logout) FROM logins')
+for x in mycursor:
+        var2.set(x[0])
+
+
+def deselect():
+
+    if len(trv.selection()) >0 and len(trv2.selection()) >0:
+        trv.selection_remove(trv.selection()[0])
+        trv2.selection_remove(trv2.selection()[0])
+
 
 def delete():
 
     selected = trv.focus()
     values = trv.item(selected,'values')
-    mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
-    mycursor = mydb.cursor()
-    sql = "DELETE FROM register WHERE id = %s"
-    val = (values[0],)
-    mycursor.execute(sql,val)
-    mydb.commit()
-    messagebox.showinfo(title='Deleted', message='Record deleted.')
+    if selected == "":
+        messagebox.showwarning(title="wrong table", message='Select "Registered users" table')
+
+    else:
+
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "DELETE FROM register WHERE id = %s"
+        val = (values[0],)
+        mycursor.execute(sql,val)
+        mydb.commit()
+        messagebox.showinfo(title='Deleted', message='Record deleted.')
 
 
 def update():
-    update_label = Label(root, text ='Field to update:')
-    update_label.place(x=750, y=350)
-    update_entry = Entry(root)
-    update_entry.place(x=860, y=350)
-    what_label = Label(root, text = 'Update: ')
-    what_label.place(x=750,y=400)
-    what_entry = Entry(root)
-    what_entry.place(x=860,y=400)
-    into_label = Label(root, text= 'update to:')
-    into_label.place(x=750, y=450)
-    into_entry = Entry(root)
-    into_entry.place(x=860,y=450)
-    #update2 = Button(root, text ='update', command =update)
-    #update2.place(x=870, y=500)
 
     if update_entry.get() == 'name':
         mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
@@ -111,14 +156,16 @@ def update():
         val = (into_entry.get(),what_entry.get())
         mycursor.execute(sql,val)
         mydb.commit()
-    elif update_entry.get() == 'surname':
+        messagebox.showinfo(title='Updated', message='Field updated successfully ')
 
+    elif update_entry.get() == 'surname':
         mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE register SET surname = %s WHERE surname = %s"
         val = (into_entry.get(),what_entry.get())
         mycursor.execute(sql,val)
         mydb.commit()
+        messagebox.showinfo(title='Updated', message='Field updated successfully ')
 
     elif update_entry.get() == 'password':
         mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
@@ -127,6 +174,7 @@ def update():
         val = (into_entry.get(),what_entry.get())
         mycursor.execute(sql,val)
         mydb.commit()
+        messagebox.showinfo(title='Updated', message='Field updated successfully ')
 
     elif update_entry.get() == 'phone_number':
         mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
@@ -135,6 +183,7 @@ def update():
         val = (into_entry.get(),what_entry.get())
         mycursor.execute(sql,val)
         mydb.commit()
+        messagebox.showinfo(title='Updated', message='Field updated successfully ')
 
     elif update_entry.get() == 'keen_name':
         mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
@@ -143,6 +192,7 @@ def update():
         val = (into_entry.get(),what_entry.get())
         mycursor.execute(sql,val)
         mydb.commit()
+        messagebox.showinfo(title='Updated', message='Field updated successfully ')
 
     elif update_entry.get() == 'keen_number':
         mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
@@ -151,10 +201,11 @@ def update():
         val = (into_entry.get(),what_entry.get())
         mycursor.execute(sql,val)
         mydb.commit()
+        messagebox.showinfo(title='Updated', message='Field updated successfully ')
 
-    #else:
-        #if update_entry.get() == "":
-            #messagebox.showwarning(title='NUll', message='Please enter correct record')
+    else:
+        if update_entry.get() == "":
+            messagebox.showwarning(title='NUll', message='Please enter correct record')
 
 
 def add_admin():
@@ -173,13 +224,18 @@ def logout_user():
     formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
     selected = trv2.focus()
     values = trv2.item(selected,'values')
-    mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
-    mycursor = mydb.cursor()
-    sql = "UPDATE logins SET logout = %s WHERE ID = %s AND password = %s"
-    val = (formatted_date,values[0],values[3],)
-    mycursor.execute(sql,val)
-    mydb.commit()
-    messagebox.showinfo(title='Logged Out', message='User is now logged out.')
+    if selected == '':
+        messagebox.showinfo(title="Null", message='Please select a record from "Login History"')
+
+    else:
+
+        mydb = mysql.connector.connect(user='sql4423111', password = 'siSVLIJkL8', host = 'sql4.freesqldatabase.com', database = 'sql4423111', auth_plugin = 'mysql_native_password')
+        mycursor = mydb.cursor()
+        sql = "UPDATE logins SET logout = %s WHERE ID = %s AND password = %s"
+        val = (formatted_date,values[0],values[3],)
+        mycursor.execute(sql,val)
+        mydb.commit()
+        messagebox.showinfo(title='Logged Out', message='User is now logged out.')
 
 def view_admin():
 
@@ -220,10 +276,13 @@ delete_btn = Button(root, text = 'Delete selected row', command = delete)
 delete_btn.place(x=850,y=50)
 
 update_btn = Button(root, text = 'Update', command = update)
-update_btn.place(x=870,y=500)
+update_btn.place(x=870,y=505)
 
 add_btn = Button(root, text = 'Add new user')
 add_btn.place(x=850, y=150)
+
+add_adim_btn = Button(root, text = 'Add user as Admin')
+add_adim_btn.place(x=980,y=150)
 
 logout_btn = Button(root, text = 'Logout user', command = logout_user)
 logout_btn.place(x=850,y=200)
@@ -234,6 +293,8 @@ exit_btn.place(x=850, y=250)
 view_admin_btn = Button(root, text = 'View Admin users', command = view_admin)
 view_admin_btn.place(x=850,y=100)
 
+deselect_btn = Button(root, text = 'deselect', command = deselect())
+deselect_btn.place(x=850,y=550)
 
 
 
