@@ -9,7 +9,7 @@ mycursor = mydb.cursor()
 
 #mycursor.execute('CREATE TABLE register (ID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, phone_number INT NOT NULL, PRIMARY KEY(ID))')
 
-#mycursor.execute('CREATE TABLE logins (ID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, login VARCHAR(255) NOT NULL,logout VARCHAR(255) NOT NULL ,PRIMARY KEY(ID))')
+#mycursor.execute('CREATE TABLE logins (ID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, login VARCHAR(255) NOT NULL,logout VARCHAR(255) DEFAULT NULL,PRIMARY KEY(ID))')
 
 #mycursor.execute('CREATE TABLE admin_reg (ID INT NOT NULL AUTO_INCREMENT, name VARCHAR(255) NOT NULL, surname VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(ID), CONSTRAINT pw_logins UNIQUE(password))')
 #sql = "INSERT INTO admin_reg (name, surname, password) VALUES (%s, %s, %s)"
@@ -23,7 +23,7 @@ mycursor = mydb.cursor()
         #print("%d    %s    %d    %d    %s    %s    %s"%(row[0], row[1],row[2],row[3],row[4],row[5],row[6]))
 
 #mycursor.execute('SHOW TABLES')
-#mycursor.execute('DROP TABLE register')
+#mycursor.execute('DROP TABLE logins')
 
 #mycursor.execute('SELECT * FROM logins')
 

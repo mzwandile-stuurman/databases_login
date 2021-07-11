@@ -22,7 +22,7 @@ password_entry = Entry(root)
 password_entry.place(x=200,y=100)
 
 
-
+# submit logout information
 def exit():
     now = datetime.now()
     formatted_date = now.strftime('%Y-%m-%d %H:%M:%S')
@@ -37,7 +37,7 @@ def back_to_main():
     root.destroy()
     import main_page
 
-logout_btn = Button(root, text = 'Enter information', command= exit)
+logout_btn = Button(root, text = 'Submit', command= exit)
 logout_btn.place(x=50,y=150)
 
 main_screen_btn= Button(root, text = 'Go to main screen', command=back_to_main)

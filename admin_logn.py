@@ -26,7 +26,7 @@ password_entry.place(x=200, y=150)
 
 
 
-
+# login admin user
 def password():
 
     mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
@@ -36,6 +36,11 @@ def password():
     found = False
     for i in mycursor:
         if i[3] == password_entry.get():
+
+
+
+
+
             found = True
     if found == True:
         messagebox.showinfo(title="Accepted", message="Login Accepted.")

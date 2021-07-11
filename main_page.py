@@ -40,10 +40,10 @@ def password():
     found = False
 
     for i in mycursor:
-        if i[3] == password_entry.get():
+        if i[3] == password_entry.get(): # Loop through the register table
             found = True
 
-    if found == True:
+    if found == True: # Insert user data into logins table
 
         messagebox.showinfo(title="Correct", message="Login Accepted")
 

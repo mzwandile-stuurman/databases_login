@@ -7,7 +7,6 @@ root.geometry("450x450")
 root.config(bg = "dark slate grey")
 
 
-
 name_reg_label = Label(root, text = 'Enter name:')
 name_reg_label.place(x= 20, y= 50)
 name_reg_entry = Entry(root)
@@ -29,7 +28,7 @@ cell_number_entry = Entry(root)
 cell_number_entry.place(x=150, y=200)
 
 
-
+# register a new user
 def reg():
 
     if name_reg_entry.get() == "" or surname_reg_entry.get() == "" or password_entry.get() == "" or cell_number_entry.get() == "":
@@ -53,7 +52,6 @@ def reg():
         mycursor.execute(sql, val)
 
         mydb.commit()
-        #messagebox.showinfo(title="Valid", message='Please enter next of keen.')
         root.destroy()
         import keen_details
 
