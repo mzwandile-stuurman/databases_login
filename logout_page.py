@@ -3,7 +3,7 @@ from tkinter import messagebox
 import mysql.connector
 from datetime import datetime
 
-mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
 mycursor = mydb.cursor()
 
 root = Tk()
@@ -18,7 +18,7 @@ name_entry.place(x=200,y=50)
 
 password_label = Label(root, text = "Enter password:")
 password_label.place(x=20,y=100)
-password_entry = Entry(root)
+password_entry = Entry(root,show='*')
 password_entry.place(x=200,y=100)
 
 

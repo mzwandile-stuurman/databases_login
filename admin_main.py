@@ -4,7 +4,7 @@ from tkinter import messagebox
 import mysql.connector
 from datetime import datetime
 
-mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
 
 root = Tk()
 root.title("Login Page")
@@ -134,7 +134,7 @@ def delete():
 
     else:
 
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "DELETE FROM register WHERE id = %s"
         val = (values[0],)
@@ -147,7 +147,7 @@ def delete():
 def update():
 
     if update_entry.get() == 'name':
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE register SET name = %s WHERE name = %s"
         val = (into_entry.get(),what_entry.get())
@@ -156,7 +156,7 @@ def update():
         messagebox.showinfo(title='Updated', message='Field updated successfully. Restart to see changes.')
 
     elif update_entry.get() == 'surname':
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE register SET surname = %s WHERE surname = %s"
         val = (into_entry.get(),what_entry.get())
@@ -165,7 +165,7 @@ def update():
         messagebox.showinfo(title='Updated', message='Field updated successfully. Restart to see changes.')
 
     elif update_entry.get() == 'password':
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE register SET password = %s WHERE password = %s"
         val = (into_entry.get(),what_entry.get())
@@ -174,7 +174,7 @@ def update():
         messagebox.showinfo(title='Updated', message='Field updated successfully. Restart to see changes. ')
 
     elif update_entry.get() == 'phone_number':
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE register SET phone_number = %s WHERE phone_number= %s"
         val = (into_entry.get(),what_entry.get())
@@ -183,7 +183,7 @@ def update():
         messagebox.showinfo(title='Updated', message='Field updated successfully. Restart to see changes.')
 
     elif update_entry.get() == 'keen_name':
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE next_of_keen SET keen_name = %s WHERE keen_name = %s"
         val = (into_entry.get(),what_entry.get())
@@ -192,7 +192,7 @@ def update():
         messagebox.showinfo(title='Updated', message='Field updated successfully. Restart to see changes. ')
 
     elif update_entry.get() == 'keen_number':
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE next_of_keen SET keen_number = %s WHERE keen_number = %s"
         val = (into_entry.get(),what_entry.get())
@@ -208,7 +208,7 @@ def update():
 def add_admin():
     selected = trv.focus()
     values = trv.item(selected,'values')
-    mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+    mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
     mycursor = mydb.cursor()
     sql = "INSERT INTO admin_reg (name, surname, password) VALUES (%s, %s , %s)"
     val = (values[1],values[2],values[3],)
@@ -227,7 +227,7 @@ def logout_user():
 
     else:
 
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
         sql = "UPDATE logins SET logout = %s WHERE ID = %s AND password = %s"
         val = (formatted_date,values[0],values[3],)

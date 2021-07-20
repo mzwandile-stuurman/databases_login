@@ -27,14 +27,14 @@ surname_entry.place(x=200,y=100)
 
 password_label = Label(root, text = "Please enter password:")
 password_label.place(x=20, y=150)
-password_entry = Entry(root)
+password_entry = Entry(root, show='*')
 password_entry.place(x=200, y=150)
 
 
 # This function insert user to Logins table if password is correct
 def password():
 
-    mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+    mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
     mycursor = mydb.cursor()
     xy = mycursor.execute('Select * from register')
     found = False
@@ -47,7 +47,7 @@ def password():
 
         messagebox.showinfo(title="Correct", message="Login Accepted")
 
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
 
         sql = "INSERT INTO logins (name, surname, password,login) VALUES (%s, %s, %s,%s)"

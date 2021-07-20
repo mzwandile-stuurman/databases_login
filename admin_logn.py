@@ -21,7 +21,7 @@ surname_entry.place(x=200,y=100)
 
 password_label = Label(root, text = "Enter admin password:")
 password_label.place(x=20, y=150)
-password_entry = Entry(root)
+password_entry = Entry(root,show='*')
 password_entry.place(x=200, y=150)
 
 
@@ -29,7 +29,7 @@ password_entry.place(x=200, y=150)
 # login admin user
 def password():
 
-    mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+    mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
     mycursor = mydb.cursor()
     xy = mycursor.execute('Select * from admin_reg')
 

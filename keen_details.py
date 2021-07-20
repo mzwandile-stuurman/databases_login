@@ -30,7 +30,7 @@ def reg():
 
     else:
 
-        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'Project', auth_plugin = 'mysql_native_password')
+        mydb = mysql.connector.connect(host='localhost', password ='@Lifechoices1234', user = 'lifechoices', database = 'mydb', auth_plugin = 'mysql_native_password')
         mycursor = mydb.cursor()
 
         sql = "INSERT INTO next_of_keen (keen_name, keen_number) VALUES ( %s, %s)"
